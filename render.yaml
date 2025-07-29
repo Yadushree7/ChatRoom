@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: flask-socketio-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: |
+      cd backend
+      pip install -r requirements.txt
+    startCommand: |
+      cd backend
+      gunicorn --worker-class eventlet -w 1 app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        value: your-secret-key
+      - fromGroup: socketio-vars # Optional env group
+    autoDeploy: true
+
+  - type: web
+    name: react-frontend
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: |
+      cd frontend
+      npm install
+      npm run build
+    staticPublishPath: frontend/build

@@ -1,0 +1,40 @@
+# === Python / Flask ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+instance/
+*.db
+*.sqlite3
+.DS_Store
+.env
+*.env
+.mypy_cache/
+.pytest_cache/
+*.log
+
+# === VS Code / PyCharm ===
+.vscode/
+.idea/
+
+# === React ===
+node_modules/
+build/
+dist/
+*.log
+.env.development
+.env.production
+.env.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# === Socket.IO (no specific files needed to ignore unless logging) ===
+
+# === General ===
+*.swp
+*.swo
