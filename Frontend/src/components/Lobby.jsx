@@ -12,7 +12,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/room-id");
+      const response = await fetch("https://chatroom-2-gc4l.onrender.com/room-id");
       const data = await response.json();
 
       if (data.RoomID && data.RoomID.length >= 10) {
