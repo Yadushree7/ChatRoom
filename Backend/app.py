@@ -1,11 +1,13 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, jsonify, request, send_from_directory
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_cors import CORS
 import uuid
 from datetime import datetime
 import os
-import eventlet
-eventlet.monkey_patch()
+
 
 
 app = Flask(__name__,static_folder="../Frontend/dist",static_url_path="/")
