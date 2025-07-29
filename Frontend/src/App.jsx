@@ -5,7 +5,7 @@ import Lobby from "./components/Lobby";
 import Room from "./components/Room";
 import io from "socket.io-client";
 
-let endPoint = "http://localhost:5000";
+let endPoint = "https://chatroom-2-gc4l.onrender.com";
 let socket = io.connect(`${endPoint}`);
 
 function App() {
