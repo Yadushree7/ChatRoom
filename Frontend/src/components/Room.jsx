@@ -528,7 +528,7 @@ function Room({ username, room, socket }) {
           width: "90vw",
           height: "85vh",
           // backgroundImage: `url(${bgImage})`,
-          background: "black",
+          backgroundColor: "#1A1919",
           borderRadius: "15px",
           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
           padding: "20px",
@@ -715,9 +715,9 @@ function Room({ username, room, socket }) {
                     maxWidth: "70%",
                     backgroundColor:
                       msg.username === username ? "#300C0C" : "#420A0D",
-                    borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%", 
+                    borderRadius: "10px 50% 50% 50% 50% / 60% 60% 40% 40%", 
                     color: "white",
-                    borderRadius: "10px",
+                    // borderRadius: "10px",
                     padding: "10px",
                     boxShadow: "2px 2px 5px rgba(0,0,0,0.5)",
                   }}
