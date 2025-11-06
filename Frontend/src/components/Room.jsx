@@ -516,7 +516,7 @@ function Room({ username, room, socket }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#0D0E1A",
+        backgroundColor: "#080303",
         
       }}
     >
@@ -526,7 +526,7 @@ function Room({ username, room, socket }) {
           gap: "20px",
           width: "90vw",
           height: "85vh",
-          backgroundColor: "#28282B",
+          backgroundColor: "#140000",
           borderRadius: "15px",
           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
           padding: "20px",
@@ -609,7 +609,8 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                color: "white",
+                border: "1px #FF0000",
+                color: "#FF0000",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
@@ -625,7 +626,8 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                color: "white",
+                border: "1px #FF0000",
+                color: "#FF0000",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
@@ -638,7 +640,8 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                color: "white",
+                border: "1px #FF0000",
+                color: "#FF0000",
                 borderRadius: "8px",
               }}
               onClick={() => setMessages([])}
