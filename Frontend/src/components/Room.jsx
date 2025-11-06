@@ -675,14 +675,14 @@ function Room({ username, room, socket }) {
           }}
         >
           <ScrollableDiv
-             {/* style={{
+             /* style={{
               flex: 1,
               borderRadius: "10px",
               backgroundColor: "black",
               boxShadow: "0 0 5px 1px red",
               padding: "10px",
               overflowY: "auto",
-            }}  */}
+            }}  */
               style={{
               flex: 1,
               borderRadius: "10px",
