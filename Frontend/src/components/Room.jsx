@@ -675,26 +675,18 @@ function Room({ username, room, socket }) {
           }}
         >
           <ScrollableDiv
-             /* style={{
-              flex: 1,
-              borderRadius: "10px",
-              backgroundColor: "black",
-              boxShadow: "0 0 5px 1px red",
-              padding: "10px",
-              overflowY: "auto",
-            }}  */
               style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "rgba(255, 255, 255, 0.1)", 
-              backdropFilter: "blur(10px)",                
-              WebkitBackdropFilter: "blur(10px)",         
-              border: "1px solid rgba(255, 255, 255, 0.2)", 
-              boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)", 
+              backgroundColor: "black",
+              backgroundImage: "url('/path/to/your/background2.jpg')", // path to your image
+              backgroundSize: "cover",    // ensures the image covers the container
+              backgroundPosition: "center",
+              // boxShadow: "0 0 5px 1px red",
               padding: "10px",
               overflowY: "auto",
-              // color: "white"                               
-            }}
+            }} 
+              
           >
             {messages.map((msg, index) => (
               <div
