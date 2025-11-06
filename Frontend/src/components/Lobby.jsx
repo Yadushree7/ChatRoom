@@ -60,7 +60,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         // backgroundColor: "#252522",
       }}
     >
-      <h1 style={{ color: "#000000" }}>Welcome!</h1>
+      <h1 style={{ color: "#000000",textDecoration: "none", }}>Welcome!</h1>
       <input
         value={localRoom}
         onChange={handleRoomChange}
