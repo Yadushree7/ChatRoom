@@ -528,7 +528,7 @@ function Room({ username, room, socket }) {
           width: "90vw",
           height: "85vh",
           // backgroundImage: `url(${bgImage})`,
-          backgroundColor: "#1A1919",
+          backgroundColor: "##303030",
           borderRadius: "15px",
           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
           padding: "20px",
