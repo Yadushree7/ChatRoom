@@ -5,7 +5,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
   const [localUsername, setLocalUsername] = useState("");
   const [localRoom, setLocalRoom] = useState("");
   const navigate = useNavigate();
-  const[ishover,setishover] = useState(false);
+  const[ishovered,setishovered] = useState(false);
 
   // const socket = io.connect("http://127.0.0.1:5000");
 
