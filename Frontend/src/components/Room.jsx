@@ -613,8 +613,8 @@ function Room({ username, room, socket }) {
              style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: hoveredButton === "leave" ? "black" : "red",
-                color: hoveredButton === "leave" ? "red" : "black",
+                backgroundColor: isHovered === "leave" ? "black" : "red",
+                color: isHovered === "leave" ? "red" : "black",
                 transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -632,8 +632,8 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: hoveredButton === "copy" ? "black" : "red",
-                color: hoveredButton === "copy" ? "red" : "black",
+                backgroundColor: isHovered === "copy" ? "black" : "red",
+                color: isHovered === "copy" ? "red" : "black",
                 transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -648,8 +648,8 @@ function Room({ username, room, socket }) {
              style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: hoveredButton === "clear" ? "black" : "red",
-                color: hoveredButton === "clear" ? "red" : "black",
+                backgroundColor: isHovered === "clear" ? "black" : "red",
+                color: isHovered === "clear" ? "red" : "black",
                 transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
