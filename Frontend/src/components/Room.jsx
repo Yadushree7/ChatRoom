@@ -547,7 +547,9 @@ function Room({ username, room, socket }) {
           <div
             style={{
               backgroundColor: "red",
-              color: "black",
+              backgroundColor: "black",
+              border: "1px solid #FF0000",
+              color: "#FF0000",
               padding: "10px",
               borderRadius: "10px",
               marginBottom: "10px",
@@ -577,7 +579,7 @@ function Room({ username, room, socket }) {
                     alignItems: "center",
                     marginBottom: "8px",
                     // backgroundColor: "black",
-                    background: "linear-gradient(to right, black, #8B0000, #FF0000)",
+                    background: "linear-gradient(to right, black 70%, #8B0000 85%, #FF0000 100%)",
                     color: "white",
                     borderRadius: "8px",
                     padding: "8px",
@@ -610,9 +612,8 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "black",
-                border: "1px solid #FF0000",
-                color: "#FF0000",
+                backgroundColor: "red",
+                color: "black",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
@@ -627,9 +628,8 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "black",
-                border: "1px solid #FF0000",
-                color: "#FF0000",
+                backgroundColor: "red",
+                color: "black",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
@@ -641,9 +641,8 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "black",
-                border: "1px solid #FF0000",
-                color: "#FF0000",
+                backgroundColor: "red",
+                color: "black",
                 borderRadius: "8px",
               }}
               onClick={() => setMessages([])}
