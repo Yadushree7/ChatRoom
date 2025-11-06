@@ -418,7 +418,7 @@ import { IoMdSend } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled from "styled-components";
-// import bgImage from "../assets/background.jpg";
+import bgImage from "../assets/background2.jpg";
 
 const ScrollableDiv = styled.div`
   overflow-y: auto;
@@ -580,7 +580,7 @@ function Room({ username, room, socket }) {
                     alignItems: "center",
                     marginBottom: "8px",
                     // backgroundColor: "black",
-                    background: "linear-gradient(to right, black 33%, #8B0000 66%, #FF0000 100%)",
+                    background: "linear-gradient(to right, black 50%, #8B0000 67%, #FF0000 100%)",
                     color: "white",
                     borderRadius: "8px",
                     padding: "8px",
@@ -679,7 +679,7 @@ function Room({ username, room, socket }) {
               flex: 1,
               borderRadius: "10px",
               backgroundColor: "black",
-              backgroundImage: "url('/path/to/your/background2.jpg')", // path to your image
+              backgroundImage:  `url(${bgImage})`, // path to your image
               backgroundSize: "cover",    // ensures the image covers the container
               backgroundPosition: "center",
               // boxShadow: "0 0 5px 1px red",
