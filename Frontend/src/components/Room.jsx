@@ -440,7 +440,7 @@ function Room({ username, room, socket }) {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -580,7 +580,7 @@ function Room({ username, room, socket }) {
                     alignItems: "center",
                     marginBottom: "8px",
                     // backgroundColor: "black",
-                    background: "linear-gradient(to right, black 40%, #8B0000 55%, #FF0000 100%)",
+                    background: "linear-gradient(to right, black 33%, #8B0000 66%, #FF0000 100%)",
                     color: "white",
                     borderRadius: "8px",
                     padding: "8px",
@@ -613,14 +613,14 @@ function Room({ username, room, socket }) {
              style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: isHovered ? "black" : "red",
-                color: isHovered ? "red" : "black",
+                backgroundColor: hoveredButton === "leave" ? "black" : "red",
+                color: hoveredButton === "leave" ? "red" : "black",
                 transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsHovered("leave")}
+              onMouseLeave={() => setIsHovered(null)}
               onClick={() => {
                 socket.emit("leave", { username, room });
                 navigate("/");
@@ -632,14 +632,14 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: isHovered ? "black" : "red",
-                color: isHovered ? "red" : "black",
+                backgroundColor: hoveredButton === "copy" ? "black" : "red",
+                color: hoveredButton === "copy" ? "red" : "black",
                 transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsHovered("copy")}
+              onMouseLeave={() => setIsHovered(null)}
               onClick={() => navigator.clipboard.writeText(room)}
             >
               <FaCopy />
@@ -648,14 +648,14 @@ function Room({ username, room, socket }) {
              style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: isHovered ? "black" : "red",
-                color: isHovered ? "red" : "black",
+                backgroundColor: hoveredButton === "clear" ? "black" : "red",
+                color: hoveredButton === "clear" ? "red" : "black",
                 transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsHovered("clear")}
+              onMouseLeave={() => setIsHovered(null)}
               onClick={() => setMessages([])}
             >
               Clear
@@ -679,7 +679,7 @@ function Room({ username, room, socket }) {
               flex: 1,
               borderRadius: "10px",
               backgroundColor: "black",
-              boxShadow: "0 0 10px 2px red",
+              boxShadow: "0 0 5px 1px red",
               padding: "10px",
               overflowY: "auto",
             }}
@@ -762,7 +762,7 @@ function Room({ username, room, socket }) {
                 outline: "none",
                 backgroundColor: "black",
                 color: "white",
-                boxShadow: "0 0 10px 2px red",
+                boxShadow: "0 0 5px 1px red",
                 resize: "none",
               }}
               placeholder="Enter message..."
@@ -775,7 +775,7 @@ function Room({ username, room, socket }) {
                 borderRadius: "10px",
                 marginLeft: "10px",
                 backgroundColor: "black",
-                boxShadow: "0 0 10px 2px red",
+                boxShadow: "0 0 5px 1px red",
                 color: "red",
               }}
               onClick={sendMessage}
