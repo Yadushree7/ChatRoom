@@ -580,7 +580,7 @@ function Room({ username, room, socket }) {
                     alignItems: "center",
                     marginBottom: "8px",
                     // backgroundColor: "black",
-                    background: "linear-gradient(to right, black 50%, #8B0000 67%, #FF0000 100%)",
+                    background: "linear-gradient(to right, black , #8B0000 , #FF0000)",
                     color: "white",
                     borderRadius: "8px",
                     padding: "8px",
