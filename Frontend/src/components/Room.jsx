@@ -419,6 +419,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled from "styled-components";
 
+// 🔹 Container adjusts layout based on screen width
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -429,6 +430,12 @@ const Container = styled.div`
   flex-wrap: wrap;
   background-color: #2b2b2b;
   min-height: 100vh;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+  }
 `;
 
 const ChatSection = styled.div`
@@ -442,6 +449,12 @@ const ChatSection = styled.div`
   height: 70vh;
   padding: 15px;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 65vh;
+    order: 2;
+  }
 `;
 
 const UsersSection = styled.div`
@@ -454,6 +467,12 @@ const UsersSection = styled.div`
   max-width: 350px;
   height: 70vh;
   padding: 15px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    order: 1;
+  }
 `;
 
 const ScrollableDiv = styled.div`
@@ -474,6 +493,10 @@ const InputArea = styled.div`
   display: flex;
   margin-top: 10px;
   gap: 10px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -486,6 +509,10 @@ const TextArea = styled.textarea`
   resize: none;
   height: 45px;
   outline: none;
+
+  @media (max-width: 600px) {
+    height: 60px;
+  }
 `;
 
 const Button = styled.button`
@@ -600,7 +627,7 @@ function Room({ username, room, socket }) {
             ))}
           </ul>
         </ScrollableDiv>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
           <Button onClick={() => setMessages([])}>Clear</Button>
           <Button onClick={() => navigator.clipboard.writeText(room)}>
             <FaCopy />
@@ -650,7 +677,11 @@ function Room({ username, room, socket }) {
                     borderRadius: "50%",
                   }}
                 />
-                <div style={{ textAlign: msg.username === username ? "right" : "left" }}>
+                <div
+                  style={{
+                    textAlign: msg.username === username ? "right" : "left",
+                  }}
+                >
                   <p style={{ margin: 0, fontWeight: "bold", fontSize: "13px" }}>
                     {msg.username === username ? "You" : msg.username}
                   </p>
@@ -671,6 +702,7 @@ function Room({ username, room, socket }) {
           ))}
           <div ref={messagesEndRef} />
         </ScrollableDiv>
+
         <InputArea>
           <TextArea
             placeholder="Type your message..."
@@ -687,4 +719,3 @@ function Room({ username, room, socket }) {
 }
 
 export default Room;
-
