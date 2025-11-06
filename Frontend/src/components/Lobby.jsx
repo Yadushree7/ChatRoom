@@ -106,7 +106,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
       >
         Join
       </button>
-      <a href="#" onClick={fetchRoomID} style={{ color: "black" }}>
+      <a href="#" onClick={fetchRoomID} style={{ color: "black",textDecoration: "none", }}>
         Generate Unique Room ID
       </a>
     </div>
