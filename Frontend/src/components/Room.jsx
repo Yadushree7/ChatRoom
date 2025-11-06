@@ -412,27 +412,27 @@
 
 // export default Room;
 
-import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { IoMdSend } from "react-icons/io";
-import { IoIosLogOut } from "react-icons/io";
-import { FaCopy } from "react-icons/fa";
-import styled from "styled-components";
-import bgImage from "../assets/background4.jpg";
+// import React, { useState, useRef, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { IoMdSend } from "react-icons/io";
+// import { IoIosLogOut } from "react-icons/io";
+// import { FaCopy } from "react-icons/fa";
+// import styled from "styled-components";
+// import bgImage from "../assets/background4.jpg";
 
-const ScrollableDiv = styled.div`
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-`;
+// const ScrollableDiv = styled.div`
+//   overflow-y: auto;
+//   &::-webkit-scrollbar {
+//     width: 8px;
+//   }
+//   &::-webkit-scrollbar-thumb {
+//     background-color: rgba(0, 0, 0, 0.6);
+//     border-radius: 10px;
+//   }
+//   &::-webkit-scrollbar-track {
+//     background-color: rgba(255, 255, 255, 0.1);
+//   }
+// `;
 
 // function Room({ username, room, socket }) {
 //   const [message, setMessage] = useState("");
@@ -812,14 +812,14 @@ import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled, { keyframes } from "styled-components";
 
-// ====== Animated Gradient Keyframes ======
+// ===== Animated Gradient Keyframes =====
 const gradientAnimation = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 `;
 
-// ====== Scrollable Div with Animated Background ======
+// ===== Scrollable Div with Animated Background =====
 const ScrollableDiv = styled.div`
   overflow-y: auto;
   border-radius: 10px;
@@ -840,7 +840,7 @@ const ScrollableDiv = styled.div`
   }
 `;
 
-// ====== Message Bubble with Animated Gradient ======
+// ===== Message Bubble with Animated Gradient =====
 const MessageBubble = styled.div`
   max-width: 70%;
   color: white;
