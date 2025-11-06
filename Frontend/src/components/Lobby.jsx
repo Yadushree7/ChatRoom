@@ -105,8 +105,8 @@
 
 // export default Lobby;
 
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
 
 function Lobby({ setUsername, setRoom, setJoined, socket }) {
   const [localUsername, setLocalUsername] = useState("");
@@ -148,7 +148,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
       console.log("Navigating to room with", localUsername, localRoom);
       navigate("/room");
     } else {
-      alert("Please enter details. Room ID should be 10 or more characters!");
+      alert("Please enter details — Room ID should be 10 or more characters!");
     }
   };
 
@@ -158,73 +158,78 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "15px",
-        width: "320px",
-        padding: "30px",
-        borderRadius: "15px",
-        background: "linear-gradient(135deg, #022622, #275d46, #569578, #101c13)",
-        backgroundSize: "400% 400%",
-        animation: "gradientShift 12s ease infinite",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
-        color: "white",
-        // fontFamily: "'Black Goth', serif",
+        gap: "12px",
+        width: "300px",
+        background: "linear-gradient(135deg, #0F0F0F, #171F55, #274272, #6C90C3)",
+        backgroundSize: "300% 300%",
+        animation: "gradientShift 15s ease infinite",
+        borderRadius: "12px",
+        padding: "25px",
+        boxShadow: "0 0 20px rgba(0,0,0,0.4)",
       }}
     >
-      <h1 style={{ color: "#ffffff", marginBottom: "10px" }}>Welcome!</h1>
+      <h1 style={{ color: "#E8E8E8", fontFamily: "'Black Goth', serif" }}>Welcome!</h1>
+
       <input
         value={localRoom}
         onChange={handleRoomChange}
         placeholder="Room ID"
         style={{
-          width: "100%",
+          width: "280px",
           borderRadius: "8px",
-          border: "none",
-          padding: "15px",
+          border: "1px solid #337418",
+          padding: "12px",
+          backgroundColor: "#0F0F0F",
+          color: "#E0E0E0",
           outline: "none",
-          backgroundColor: "#101c13",
-          color: "white",
         }}
       />
+
       <input
         value={localUsername}
         name="username"
         onChange={handleUsernameChange}
         placeholder="Username"
         style={{
-          width: "100%",
+          width: "280px",
           borderRadius: "8px",
-          border: "none",
-          padding: "15px",
+          border: "1px solid #337418",
+          padding: "12px",
+          backgroundColor: "#0F0F0F",
+          color: "#E0E0E0",
           outline: "none",
-          backgroundColor: "#101c13",
-          color: "white",
         }}
       />
+
       <button
         name="join"
         type="submit"
         style={{
-          width: "100%",
+          width: "300px",
           borderRadius: "8px",
           border: "none",
+          backgroundColor: "#337418",
+          color: "#FFFFFF",
           padding: "12px",
-          backgroundColor: "#022622",
-          color: "white",
           fontWeight: "bold",
           cursor: "pointer",
+          transition: "0.3s ease",
         }}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "#4CA829")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "#337418")}
         onClick={joinRoom}
       >
         Join
       </button>
+
       <a
         href="#"
         onClick={fetchRoomID}
         style={{
-          color: "#a9f5c5",
-          textDecoration: "none",
-          marginTop: "5px",
-          fontWeight: "bold",
+          color: "#B0D4FF",
+          textDecoration: "underline",
+          fontSize: "0.9em",
+          marginTop: "10px",
         }}
       >
         Generate Unique Room ID
@@ -234,4 +239,3 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
 }
 
 export default Lobby;
-
