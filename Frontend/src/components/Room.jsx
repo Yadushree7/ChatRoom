@@ -714,8 +714,8 @@ function Room({ username, room, socket }) {
                   style={{
                     maxWidth: "70%",
                     backgroundColor:
-                      msg.username === username ? "#300C0C" : "#420A0D",
-                    borderRadius: "10px 50% 50% 50% 50% / 60% 60% 40% 40%", 
+                      msg.username === username ? "#950F35" : "#B51240",
+                    borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%", 
                     color: "white",
                     // borderRadius: "10px",
                     padding: "10px",
