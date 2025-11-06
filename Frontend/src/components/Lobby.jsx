@@ -148,7 +148,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
       console.log("Navigating to room with", localUsername, localRoom);
       navigate("/room");
     } else {
-      alert("Please enter details — Room ID should be 10 or more characters!");
+      alert("Please enter details Room ID should be 10 or more characters!");
     }
   };
 
@@ -158,65 +158,65 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "12px",
+        gap: "10px",
         width: "300px",
-        background: "linear-gradient(135deg, #0F0F0F, #171F55, #274272, #6C90C3)",
+        background: "linear-gradient(135deg, #0D1433, #171F55, #274272, #6C90C3)",
         backgroundSize: "300% 300%",
-        animation: "gradientShift 15s ease infinite",
-        borderRadius: "12px",
-        padding: "25px",
-        boxShadow: "0 0 20px rgba(0,0,0,0.4)",
+        animation: "gradientShift 12s ease infinite",
+        padding: "30px",
+        borderRadius: "10px",
+        boxShadow: "0 0 20px rgba(0,0,0,0.3)",
       }}
     >
-      <h1 style={{ color: "#E8E8E8", fontFamily: "'Black Goth', serif" }}>Welcome!</h1>
+      <h1 style={{ color: "#E8E8E8" }}>Welcome!</h1>
 
       <input
         value={localRoom}
         onChange={handleRoomChange}
         placeholder="Room ID"
         style={{
-          width: "280px",
-          borderRadius: "8px",
-          border: "1px solid #337418",
-          padding: "12px",
+          width: "300px",
+          borderRadius: "5px",
+          border: "1px solid #6C90C3",
+          padding: "15px",
           backgroundColor: "#0F0F0F",
-          color: "#E0E0E0",
+          color: "#FFFFFF",
           outline: "none",
         }}
-      />
+      ></input>
 
       <input
         value={localUsername}
         name="username"
         onChange={handleUsernameChange}
-        placeholder="Username"
+        placeholder="UserName"
         style={{
-          width: "280px",
-          borderRadius: "8px",
-          border: "1px solid #337418",
-          padding: "12px",
+          width: "300px",
+          borderRadius: "5px",
+          border: "1px solid #6C90C3",
+          padding: "15px",
           backgroundColor: "#0F0F0F",
-          color: "#E0E0E0",
+          color: "#FFFFFF",
           outline: "none",
         }}
-      />
+      ></input>
 
       <button
         name="join"
         type="submit"
         style={{
-          width: "300px",
-          borderRadius: "8px",
+          width: "330px",
+          borderRadius: "5px",
           border: "none",
-          backgroundColor: "#337418",
+          backgroundColor: "#274272",
           color: "#FFFFFF",
+          outline: "none",
           padding: "12px",
-          fontWeight: "bold",
           cursor: "pointer",
           transition: "0.3s ease",
         }}
-        onMouseOver={(e) => (e.target.style.backgroundColor = "#4CA829")}
-        onMouseOut={(e) => (e.target.style.backgroundColor = "#337418")}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "#6C90C3")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "#274272")}
         onClick={joinRoom}
       >
         Join
@@ -226,10 +226,8 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         href="#"
         onClick={fetchRoomID}
         style={{
-          color: "#B0D4FF",
+          color: "#AFCBFF",
           textDecoration: "underline",
-          fontSize: "0.9em",
-          marginTop: "10px",
         }}
       >
         Generate Unique Room ID
