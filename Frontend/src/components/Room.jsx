@@ -620,7 +620,7 @@ function Room({ username, room, socket }) {
                 marginRight: "5px",
               }}
               onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)
+              onMouseLeave={() => setIsHovered(false)}
               onClick={() => {
                 socket.emit("leave", { username, room });
                 navigate("/");
@@ -655,7 +655,7 @@ function Room({ username, room, socket }) {
                 marginRight: "5px",
               }}
               onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)
+              onMouseLeave={() => setIsHovered(false)}
               onClick={() => setMessages([])}
             >
               Clear
