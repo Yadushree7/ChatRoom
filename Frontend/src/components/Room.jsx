@@ -565,7 +565,7 @@ function Room({ username, room, socket }) {
             Room ID: {room}
           </div>
 
-          <h4 style={{ textAlign: "center" }}>Online Members</h4>
+          <h4 style={{ textAlign: "center", color: "red" }}>Online Members</h4>
 
           <ScrollableDiv
             style={{
@@ -718,7 +718,7 @@ function Room({ username, room, socket }) {
                     maxWidth: "70%",
                     // border: msg.username === username ? "1px solid red",
                     backgroundColor:
-                      msg.username === username ? "#black" : " #A80C0C",
+                      msg.username === username ? "black" : "red",
                     // background: msg.username === username
                     //   ? "linear-gradient(to right, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)"
                     //   : "linear-gradient(to left, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)",
