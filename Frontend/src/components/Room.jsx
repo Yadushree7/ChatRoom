@@ -418,7 +418,7 @@ import { IoMdSend } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled from "styled-components";
-import bgImage from "../assets/background.jpg";
+// import bgImage from "../assets/background.jpg";
 
 const ScrollableDiv = styled.div`
   overflow-y: auto;
@@ -516,10 +516,8 @@ function Room({ username, room, socket }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        // backgroundColor: "#2b2b2b",
-         backgroundImage: `url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundColor: "#0D0E1A",
+        
       }}
     >
       <div
@@ -528,7 +526,7 @@ function Room({ username, room, socket }) {
           gap: "20px",
           width: "90vw",
           height: "85vh",
-          backgroundColor: "#3b3b3b",
+          backgroundColor: "#28282B",
           borderRadius: "15px",
           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
           padding: "20px",
@@ -538,7 +536,7 @@ function Room({ username, room, socket }) {
         <div
           style={{
             flex: "1",
-            backgroundColor: "#2b2b2b",
+            // backgroundColor: "#2b2b2b",
             borderRadius: "10px",
             padding: "10px",
             display: "flex",
@@ -656,7 +654,7 @@ function Room({ username, room, socket }) {
             flex: "2.5",
             display: "flex",
             flexDirection: "column",
-            backgroundColor: "#2b2b2b",
+            // backgroundColor: "#2b2b2b",
             borderRadius: "10px",
             padding: "10px",
           }}
