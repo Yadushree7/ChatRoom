@@ -684,7 +684,7 @@ function Room({ username, room, socket }) {
               flex: 1,
               borderRadius: "10px",
               // backgroundColor: "black",
-              background: "linear-gradient(to bottom, #FF0000, #990000, #660000, #330000, #000000)", 
+              background: "linear-gradient(circle, #FF0000, #990000, #660000, #330000, #000000)", 
               padding: "10px",
               overflowY: "auto",
             }} 
@@ -717,8 +717,8 @@ function Room({ username, room, socket }) {
                     // backgroundColor:
                     //   msg.username === username ? "#950F35" : "#B51240",
                     background: msg.username === username
-                      ? "linear-gradient(circle, #B51240, #950F35)" // your message
-                      : "linear-gradient(circle, #950F35, #B51240)", // others' messages
+                      ? "linear-gradient(to right, #950F35, #B51240)" // your message
+                      : "linear-gradient(to left, #950F35, #B51240)", // others' messages
                     color: "white",
                     borderRadius: "10px",
                     padding: "10px",
