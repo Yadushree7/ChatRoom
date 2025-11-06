@@ -685,7 +685,7 @@ function Room({ username, room, socket }) {
               style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "#750000",
+              backgroundColor: "#6E0B0B",
               // background: "radial-gradient(circle, #FF0000, #990000, #660000, #330000, #000000)", 
               padding: "10px",
               overflowY: "auto",
@@ -716,13 +716,13 @@ function Room({ username, room, socket }) {
                 <div
                   style={{
                     maxWidth: "70%",
-                    border: "1px solid red",
+                    // border: msg.username === username ? "1px solid red",
                     backgroundColor:
-                      msg.username === username ? "#black" : " #red",
+                      msg.username === username ? "#black" : " #A80C0C",
                     // background: msg.username === username
                     //   ? "linear-gradient(to right, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)"
                     //   : "linear-gradient(to left, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)",
-                    color: "white",
+                    color: msg.username === username ? "white" : "black",
                     borderRadius: "10px",
                     padding: "10px",
                     boxShadow: "2px 2px 5px rgba(0,0,0,0.5)",
