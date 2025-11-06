@@ -678,11 +678,11 @@ function Room({ username, room, socket }) {
               style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "black",
-              backgroundImage:  `url(${bgImage})`, // path to your image
-              backgroundSize: "cover",    // ensures the image covers the container
-              backgroundPosition: "center",
-              // boxShadow: "0 0 5px 1px red",
+              // backgroundColor: "black",
+              // backgroundImage:  `url(${bgImage})`, // path to your image
+              // backgroundSize: "cover",    // ensures the image covers the container
+              // backgroundPosition: "center",
+              // // boxShadow: "0 0 5px 1px red",
               padding: "10px",
               overflowY: "auto",
             }} 
