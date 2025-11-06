@@ -442,11 +442,7 @@ function Room({ username, room, socket }) {
   const messagesEndRef = useRef(null);
   const [isHovered, setIsHovered] = useState(null);
 
-  const gradientAnimation = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
+
   
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -688,10 +684,7 @@ function Room({ username, room, socket }) {
               flex: 1,
               borderRadius: "10px",
               // backgroundColor: "black",
-              // backgroundImage:  `url(${bgImage})`, // path to your image
-              // backgroundSize: "cover",    // ensures the image covers the container
-              // backgroundPosition: "center",
-              // // boxShadow: "0 0 5px 1px red",
+              background: "linear-gradient(to bottom, #FF0000, #990000, #660000, #330000, #000000)", 
               padding: "10px",
               overflowY: "auto",
             }} 
@@ -723,7 +716,9 @@ function Room({ username, room, socket }) {
                     maxWidth: "70%",
                     // backgroundColor:
                     //   msg.username === username ? "#950F35" : "#B51240",
-                    background: msg.username === username  ? "linear-gradient(to bottom, #000000 0%, #950F35 30%, #B51240 70%, #000000 100%),
+                    background: msg.username === username
+                      ? "linear-gradient(to bottom, #B51240, #950F35)" // your message
+                      : "linear-gradient(to bottom, #950F35, #B51240)", // others' messages
                     color: "white",
                     borderRadius: "10px",
                     padding: "10px",
