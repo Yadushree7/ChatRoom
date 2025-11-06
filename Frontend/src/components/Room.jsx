@@ -412,12 +412,392 @@
 
 // export default Room;
 
+// import React, { useState, useRef, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { IoMdSend } from "react-icons/io";
+// import { IoIosLogOut } from "react-icons/io";
+// import { FaCopy } from "react-icons/fa";
+// import styled from "styled-components";
+
+// const ScrollableDiv = styled.div`
+//   overflow-y: auto;
+//   &::-webkit-scrollbar {
+//     width: 8px;
+//   }
+//   &::-webkit-scrollbar-thumb {
+//     background-color: rgba(0, 0, 0, 0.6);
+//     border-radius: 10px;
+//   }
+//   &::-webkit-scrollbar-track {
+//     background-color: rgba(255, 255, 255, 0.1);
+//   }
+// `;
+
+// function Room({ username, room, socket }) {
+//   const [message, setMessage] = useState("");
+//   const [messages, setMessages] = useState([]);
+//   const [users, setUsers] = useState([]);
+//   const navigate = useNavigate();
+//   const messagesEndRef = useRef(null);
+
+//   useEffect(() => {
+//     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+//   }, [messages]);
+
+//   const handleMessageChange = (e) => {
+//     setMessage(e.target.value);
+//   };
+
+//   const sendMessage = () => {
+//     if (message.trim() !== "") {
+//       socket.emit("message", { username, message, room, time: Date.now() });
+//       setMessage("");
+//     } else {
+//       alert("Please enter a message to send.");
+//     }
+//   };
+
+//   useEffect(() => {
+//     const handleJoin = (data) => {
+//       if (data.room === room) {
+//         setUsers(data.users);
+//         setMessages((prev) => [
+//           ...prev,
+//           { username: "Server❗", message: data.message, time: Date.now() },
+//         ]);
+//       }
+//     };
+
+//     const handleLeave = (data) => {
+//       if (data.room === room) {
+//         setUsers(data.users);
+//         setMessages((prev) => [
+//           ...prev,
+//           { username: "Server❗", message: data.message, time: Date.now() },
+//         ]);
+//       }
+//     };
+
+//     const handleMessage = (msg) => {
+//       if (msg.room === room) {
+//         setMessages((prevMessages) => [
+//           ...prevMessages,
+//           { ...msg, time: Date.now() },
+//         ]);
+//       }
+//     };
+
+//     const handleUnload = () => {
+//       socket.emit("leave", { username, room });
+//     };
+
+//     socket.on("joined", handleJoin);
+//     socket.on("left", handleLeave);
+//     socket.on("message", handleMessage);
+//     window.addEventListener("beforeunload", handleUnload);
+
+//     return () => {
+//       socket.off("joined", handleJoin);
+//       socket.off("left", handleLeave);
+//       socket.off("message", handleMessage);
+//       window.removeEventListener("beforeunload", handleUnload);
+//     };
+//   }, [room, socket, username]);
+
+//   return (
+//     <div
+//       style={{
+//         position: "fixed",
+//         top: 0,
+//         left: 0,
+//         height: "100vh",
+//         width: "100vw",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         backgroundColor: "#2b2b2b",
+//       }}
+//     >
+//       <div
+//         style={{
+//           display: "flex",
+//           gap: "20px",
+//           width: "90vw",
+//           height: "85vh",
+//           backgroundColor: "#3b3b3b",
+//           borderRadius: "15px",
+//           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
+//           padding: "20px",
+//         }}
+//       >
+//         {/* ===== Left: User List ===== */}
+//         <div
+//           style={{
+//             flex: "1",
+//             backgroundColor: "#2b2b2b",
+//             borderRadius: "10px",
+//             padding: "10px",
+//             display: "flex",
+//             flexDirection: "column",
+//             color: "white",
+//           }}
+//         >
+//           <div
+//             style={{
+//               backgroundColor: "black",
+//               color: "white",
+//               padding: "10px",
+//               borderRadius: "10px",
+//               marginBottom: "10px",
+//               textAlign: "center",
+//               fontWeight: "bold",
+//             }}
+//           >
+//             Room ID: {room}
+//           </div>
+
+//           <h4 style={{ textAlign: "center" }}>Online Members</h4>
+
+//           <ScrollableDiv
+//             style={{
+//               flex: 1,
+//               backgroundColor: "#3b3b3b",
+//               borderRadius: "10px",
+//               padding: "10px",
+//             }}
+//           >
+//             <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
+//               {users.map((user, index) => (
+//                 <li
+//                   key={index}
+//                   style={{
+//                     display: "flex",
+//                     alignItems: "center",
+//                     marginBottom: "8px",
+//                     backgroundColor: "#2b2b2b",
+//                     borderRadius: "8px",
+//                     padding: "8px",
+//                   }}
+//                 >
+//                   <img
+//                     src={`https://robohash.org/${user}?set=set4`}
+//                     alt="avatar"
+//                     style={{
+//                       width: "30px",
+//                       height: "30px",
+//                       borderRadius: "50%",
+//                       marginRight: "10px",
+//                     }}
+//                   />
+//                   {user}
+//                 </li>
+//               ))}
+//             </ul>
+//           </ScrollableDiv>
+
+//           <div
+//             style={{
+//               display: "flex",
+//               justifyContent: "space-between",
+//               marginTop: "10px",
+//             }}
+//           >
+//             <button
+//               style={{
+//                 flex: 1,
+//                 padding: "8px",
+//                 backgroundColor: "black",
+//                 color: "white",
+//                 borderRadius: "8px",
+//                 marginRight: "5px",
+//               }}
+//               onClick={() => {
+//                 socket.emit("leave", { username, room });
+//                 navigate("/");
+//               }}
+//             >
+//               <IoIosLogOut />
+//             </button>
+//             <button
+//               style={{
+//                 flex: 1,
+//                 padding: "8px",
+//                 backgroundColor: "black",
+//                 color: "white",
+//                 borderRadius: "8px",
+//                 marginRight: "5px",
+//               }}
+//               onClick={() => navigator.clipboard.writeText(room)}
+//             >
+//               <FaCopy />
+//             </button>
+//             <button
+//               style={{
+//                 flex: 1,
+//                 padding: "8px",
+//                 backgroundColor: "black",
+//                 color: "white",
+//                 borderRadius: "8px",
+//               }}
+//               onClick={() => setMessages([])}
+//             >
+//               Clear
+//             </button>
+//           </div>
+//         </div>
+
+//         {/* ===== Right: Chat Section ===== */}
+//         <div
+//           style={{
+//             flex: "2.5",
+//             display: "flex",
+//             flexDirection: "column",
+//             backgroundColor: "#2b2b2b",
+//             borderRadius: "10px",
+//             padding: "10px",
+//           }}
+//         >
+//           <ScrollableDiv
+//             style={{
+//               flex: 1,
+//               borderRadius: "10px",
+//               backgroundColor: "#3b3b3b",
+//               padding: "10px",
+//               overflowY: "auto",
+//             }}
+//           >
+//             {messages.map((msg, index) => (
+//               <div
+//                 key={index}
+//                 style={{
+//                   display: "flex",
+//                   flexDirection:
+//                     msg.username === username ? "row-reverse" : "row",
+//                   alignItems: "flex-start",
+//                   marginBottom: "10px",
+//                 }}
+//               >
+//                 <img
+//                   src={`https://robohash.org/${msg.username}?set=set4`}
+//                   alt="avatar"
+//                   style={{
+//                     width: "35px",
+//                     height: "35px",
+//                     borderRadius: "50%",
+//                     margin: "0 10px",
+//                   }}
+//                 />
+//                 <div
+//                   style={{
+//                     maxWidth: "70%",
+//                     backgroundColor:
+//                       msg.username === username ? "#000000" : "#444444",
+//                     color: "white",
+//                     borderRadius: "10px",
+//                     padding: "10px",
+//                     boxShadow: "2px 2px 5px rgba(0,0,0,0.5)",
+//                   }}
+//                 >
+//                   <p
+//                     style={{
+//                       fontSize: "12px",
+//                       fontWeight: "bold",
+//                       margin: 0,
+//                       color: "#ccc",
+//                     }}
+//                   >
+//                     {msg.username === username ? "You" : msg.username}
+//                   </p>
+//                   <p
+//                     style={{
+//                       marginTop: "5px",
+//                       whiteSpace: "pre-wrap",
+//                       wordWrap: "break-word",
+//                     }}
+//                   >
+//                     {msg.message}
+//                   </p>
+//                   <p
+//                     style={{
+//                       fontSize: "10px",
+//                       color: "#999",
+//                       textAlign: "right",
+//                       marginTop: "5px",
+//                     }}
+//                   >
+//                     {new Date(msg.time).toLocaleTimeString()}
+//                   </p>
+//                 </div>
+//               </div>
+//             ))}
+//             <div ref={messagesEndRef} />
+//           </ScrollableDiv>
+
+//           {/* Input Area */}
+//           <div style={{ display: "flex", marginTop: "10px" }}>
+//             <textarea
+//               style={{
+//                 flex: 1,
+//                 borderRadius: "10px",
+//                 border: "none",
+//                 padding: "10px",
+//                 outline: "none",
+//                 backgroundColor: "black",
+//                 color: "white",
+//                 resize: "none",
+//               }}
+//               placeholder="Enter message..."
+//               value={message}
+//               onChange={handleMessageChange}
+//             />
+//             <button
+//               style={{
+//                 width: "60px",
+//                 borderRadius: "10px",
+//                 marginLeft: "10px",
+//                 backgroundColor: "black",
+//                 color: "white",
+//               }}
+//               onClick={sendMessage}
+//             >
+//               <IoMdSend />
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Room;
+
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdSend } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+// === Gradient Animation ===
+const gradientShift = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #022622, #275d46, #569578, #101c13);
+  background-size: 400% 400%;
+  animation: ${gradientShift} 15s ease infinite;
+`;
 
 const ScrollableDiv = styled.div`
   overflow-y: auto;
@@ -444,9 +824,7 @@ function Room({ username, room, socket }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleMessageChange = (e) => {
-    setMessage(e.target.value);
-  };
+  const handleMessageChange = (e) => setMessage(e.target.value);
 
   const sendMessage = () => {
     if (message.trim() !== "") {
@@ -505,36 +883,25 @@ function Room({ username, room, socket }) {
   }, [room, socket, username]);
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#2b2b2b",
-      }}
-    >
+    <Background>
       <div
         style={{
           display: "flex",
           gap: "20px",
           width: "90vw",
           height: "85vh",
-          backgroundColor: "#3b3b3b",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
           borderRadius: "15px",
           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
           padding: "20px",
+          backdropFilter: "blur(6px)",
         }}
       >
         {/* ===== Left: User List ===== */}
         <div
           style={{
             flex: "1",
-            backgroundColor: "#2b2b2b",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
             borderRadius: "10px",
             padding: "10px",
             display: "flex",
@@ -561,7 +928,7 @@ function Room({ username, room, socket }) {
           <ScrollableDiv
             style={{
               flex: 1,
-              backgroundColor: "#3b3b3b",
+              backgroundColor: "rgba(40, 40, 40, 0.6)",
               borderRadius: "10px",
               padding: "10px",
             }}
@@ -574,7 +941,7 @@ function Room({ username, room, socket }) {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: "8px",
-                    backgroundColor: "#2b2b2b",
+                    backgroundColor: "rgba(0,0,0,0.5)",
                     borderRadius: "8px",
                     padding: "8px",
                   }}
@@ -606,7 +973,7 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "black",
+                backgroundColor: "#101c13",
                 color: "white",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -622,7 +989,7 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "black",
+                backgroundColor: "#101c13",
                 color: "white",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -635,7 +1002,7 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "black",
+                backgroundColor: "#101c13",
                 color: "white",
                 borderRadius: "8px",
               }}
@@ -652,7 +1019,7 @@ function Room({ username, room, socket }) {
             flex: "2.5",
             display: "flex",
             flexDirection: "column",
-            backgroundColor: "#2b2b2b",
+            backgroundColor: "rgba(0,0,0,0.6)",
             borderRadius: "10px",
             padding: "10px",
           }}
@@ -661,7 +1028,7 @@ function Room({ username, room, socket }) {
             style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "#3b3b3b",
+              backgroundColor: "rgba(40, 40, 40, 0.6)",
               padding: "10px",
               overflowY: "auto",
             }}
@@ -691,7 +1058,7 @@ function Room({ username, room, socket }) {
                   style={{
                     maxWidth: "70%",
                     backgroundColor:
-                      msg.username === username ? "#000000" : "#444444",
+                      msg.username === username ? "#022622" : "#275d46",
                     color: "white",
                     borderRadius: "10px",
                     padding: "10px",
@@ -720,7 +1087,7 @@ function Room({ username, room, socket }) {
                   <p
                     style={{
                       fontSize: "10px",
-                      color: "#999",
+                      color: "#aaa",
                       textAlign: "right",
                       marginTop: "5px",
                     }}
@@ -742,7 +1109,7 @@ function Room({ username, room, socket }) {
                 border: "none",
                 padding: "10px",
                 outline: "none",
-                backgroundColor: "black",
+                backgroundColor: "#101c13",
                 color: "white",
                 resize: "none",
               }}
@@ -755,7 +1122,7 @@ function Room({ username, room, socket }) {
                 width: "60px",
                 borderRadius: "10px",
                 marginLeft: "10px",
-                backgroundColor: "black",
+                backgroundColor: "#022622",
                 color: "white",
               }}
               onClick={sendMessage}
@@ -765,7 +1132,7 @@ function Room({ username, room, socket }) {
           </div>
         </div>
       </div>
-    </div>
+    </Background>
   );
 }
 
