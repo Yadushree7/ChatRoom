@@ -440,6 +440,7 @@ function Room({ username, room, socket }) {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -579,7 +580,7 @@ function Room({ username, room, socket }) {
                     alignItems: "center",
                     marginBottom: "8px",
                     // backgroundColor: "black",
-                    background: "linear-gradient(to right, black 70%, #8B0000 85%, #FF0000 100%)",
+                    background: "linear-gradient(to right, black 40%, #8B0000 55%, #FF0000 100%)",
                     color: "white",
                     borderRadius: "8px",
                     padding: "8px",
@@ -609,14 +610,17 @@ function Room({ username, room, socket }) {
             }}
           >
             <button
-              style={{
+             style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "red",
-                color: "black",
+                backgroundColor: isHovered ? "black" : "red",
+                color: isHovered ? "red" : "black",
+                transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)
               onClick={() => {
                 socket.emit("leave", { username, room });
                 navigate("/");
@@ -628,23 +632,30 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "red",
-                color: "black",
+                backgroundColor: isHovered ? "black" : "red",
+                color: isHovered ? "red" : "black",
+                transition: "all 0.3s ease",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
               onClick={() => navigator.clipboard.writeText(room)}
             >
               <FaCopy />
             </button>
             <button
-              style={{
+             style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "red",
-                color: "black",
+                backgroundColor: isHovered ? "black" : "red",
+                color: isHovered ? "red" : "black",
+                transition: "all 0.3s ease",
                 borderRadius: "8px",
+                marginRight: "5px",
               }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)
               onClick={() => setMessages([])}
             >
               Clear
@@ -667,7 +678,8 @@ function Room({ username, room, socket }) {
             style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "#3b3b3b",
+              backgroundColor: "black",
+              boxShadow: "0 0 10px 2px red",
               padding: "10px",
               overflowY: "auto",
             }}
@@ -750,6 +762,7 @@ function Room({ username, room, socket }) {
                 outline: "none",
                 backgroundColor: "black",
                 color: "white",
+                boxShadow: "0 0 10px 2px red",
                 resize: "none",
               }}
               placeholder="Enter message..."
@@ -762,7 +775,8 @@ function Room({ username, room, socket }) {
                 borderRadius: "10px",
                 marginLeft: "10px",
                 backgroundColor: "black",
-                color: "white",
+                boxShadow: "0 0 10px 2px red",
+                color: "red",
               }}
               onClick={sendMessage}
             >
