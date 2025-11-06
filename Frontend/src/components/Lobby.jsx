@@ -55,9 +55,9 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        // gap: "10px",
-        // width: "300px",
-        // backgroundColor: "#252522",
+        gap: "10px",
+        width: "300px",
+        backgroundColor: "#252522",
       }}
     >
       <h1 style={{ color: "black",textDecoration: "none" }}>Welcome!</h1>
@@ -99,6 +99,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
           backgroundColor: ishovered  ? "black" : "red",
           color: ishovered ? "red" : "black",
           outline: "none",
+          transition: "all 0.3s ease",
         }}
         onMouseEnter={() => setishovered(true)}
         onMouseLeave={() => setishovered(false)}
