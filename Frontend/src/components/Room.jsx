@@ -418,7 +418,7 @@ import { IoMdSend } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled from "styled-components";
-import bgImage from "../assets/background3.jpg";
+import bgImage from "../assets/background4.jpg";
 
 const ScrollableDiv = styled.div`
   overflow-y: auto;
@@ -581,7 +581,8 @@ function Room({ username, room, socket }) {
                     alignItems: "center",
                     marginBottom: "8px",
                     // backgroundColor: "black",
-                    background: "linear-gradient(to right, black 50%, #8B0000 75% , #FF0000)",
+                    // background: "linear-gradient(to right, black 50%, #8B0000 75% , #FF0000)",
+                    background: "linear-gradient(to right, black 65%, red 100%)",
                     color: "white",
                     borderRadius: "8px",
                     padding: "8px",
@@ -679,10 +680,10 @@ function Room({ username, room, socket }) {
               style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "black",
-              // backgroundImage:  `url(${bgImage})`, // path to your image
-              // backgroundSize: "cover",    // ensures the image covers the container
-              // backgroundPosition: "center",
+              // backgroundColor: "black",
+              backgroundImage:  `url(${bgImage})`, // path to your image
+              backgroundSize: "cover",    // ensures the image covers the container
+              backgroundPosition: "center",
               // // boxShadow: "0 0 5px 1px red",
               padding: "10px",
               overflowY: "auto",
@@ -714,10 +715,13 @@ function Room({ username, room, socket }) {
                   style={{
                     maxWidth: "70%",
                     backgroundColor:
-                      msg.username === username ? "#950F35" : "#B51240",
-                    borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%", 
+                      // msg.username === username ? "#950F35" : "#B51240",
+                      background: msg.username === username
+                        ? "linear-gradient(to bottom, #950F35, #B51240)"
+                        : "linear-gradient(to bottom, #B51240, #950F35)";
+
                     color: "white",
-                    // borderRadius: "10px",
+                    borderRadius: "10px",
                     padding: "10px",
                     boxShadow: "2px 2px 5px rgba(0,0,0,0.5)",
                   }}
