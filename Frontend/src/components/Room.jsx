@@ -546,8 +546,8 @@ function Room({ username, room, socket }) {
         >
           <div
             style={{
-              backgroundColor: "black",
-              color: "white",
+              backgroundColor: "red",
+              color: "black",
               padding: "10px",
               borderRadius: "10px",
               marginBottom: "10px",
@@ -576,9 +576,9 @@ function Room({ username, room, socket }) {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: "8px",
-                    backgroundColor: "black",
-                    // border: "3px solid #FF0000",
-                    color: "#FF0000",
+                    // backgroundColor: "black",
+                    background: "linear-gradient(to right, black, #8B0000, #FF0000)",
+                    color: "white",
                     borderRadius: "8px",
                     padding: "8px",
                   }}
@@ -611,7 +611,7 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                border: "3px solid #FF0000",
+                border: "1px solid #FF0000",
                 color: "#FF0000",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -628,7 +628,7 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                border: "3px solid #FF0000",
+                border: "1px solid #FF0000",
                 color: "#FF0000",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -642,7 +642,7 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                border: "3px #FF0000",
+                border: "1px solid #FF0000",
                 color: "#FF0000",
                 borderRadius: "8px",
               }}
