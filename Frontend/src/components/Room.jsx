@@ -563,7 +563,7 @@ function Room({ username, room, socket }) {
           <ScrollableDiv
             style={{
               flex: 1,
-              backgroundColor: "#3b3b3b",
+              // backgroundColor: "#3b3b3b",
               borderRadius: "10px",
               padding: "10px",
             }}
@@ -576,7 +576,9 @@ function Room({ username, room, socket }) {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: "8px",
-                    backgroundColor: "#2b2b2b",
+                    backgroundColor: "black",
+                    border: "3px #FF0000",
+                    color: "#FF0000",
                     borderRadius: "8px",
                     padding: "8px",
                   }}
@@ -609,7 +611,7 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                border: "1px #FF0000",
+                border: "3px #FF0000",
                 color: "#FF0000",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -626,7 +628,7 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                border: "1px #FF0000",
+                border: "3px #FF0000",
                 color: "#FF0000",
                 borderRadius: "8px",
                 marginRight: "5px",
@@ -640,7 +642,7 @@ function Room({ username, room, socket }) {
                 flex: 1,
                 padding: "8px",
                 backgroundColor: "black",
-                border: "1px #FF0000",
+                border: "3px #FF0000",
                 color: "#FF0000",
                 borderRadius: "8px",
               }}
