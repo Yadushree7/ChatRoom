@@ -55,9 +55,9 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "10px",
-        width: "300px",
-        backgroundColor: "#252522",
+        // gap: "10px",
+        // width: "300px",
+        // backgroundColor: "#252522",
       }}
     >
       <h1 style={{ color: "#000000" }}>Welcome!</h1>
