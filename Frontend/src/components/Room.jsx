@@ -788,7 +788,7 @@ function Room({ username, room, socket }) {
                 marginLeft: "10px",
                 border: "1px solid red",
                 backgroundColor: "black",
-                boxShadow: "0 0 5px 1px red",
+                // boxShadow: "0 0 5px 1px red",
                 color: "red",
               }}
               onClick={sendMessage}
