@@ -5,6 +5,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
   const [localUsername, setLocalUsername] = useState("");
   const [localRoom, setLocalRoom] = useState("");
   const navigate = useNavigate();
+  const[ishover,setishover] = useState(false);
 
   // const socket = io.connect("http://127.0.0.1:5000");
 
@@ -56,6 +57,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         alignItems: "center",
         gap: "10px",
         width: "300px",
+        backgroundColor: "#252522",
       }}
     >
       <h1 style={{ color: "#000000" }}>Welcome!</h1>
@@ -68,6 +70,8 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
           borderRadius: "5px",
           border: "none",
           padding: "15px",
+          backgroundColor: "#750000",
+          color: "black",
         }}
       ></input>
       <input
@@ -80,6 +84,8 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
           borderRadius: "5px",
           border: "none",
           padding: "15px",
+          backgroundColor: "#750000",
+          color: "black",
         }}
       ></input>
       <button
@@ -89,9 +95,13 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
           width: "330px",
           borderRadius: "5px",
           border: "none",
-          backgroundColor: "#000000",
+          // backgroundColor: "#000000",
+          backgroundColor: ishovered === "leave" ? "black" : "red",
+          color: ishovered === "leave" ? "red" : "black",
           outline: "none",
         }}
+        onMouseEnter={() => setishovered(true)}
+        onMouseLeave={() => setishovered(false)}
         onClick={joinRoom}
       >
         Join
