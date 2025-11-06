@@ -60,7 +60,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
         // backgroundColor: "#252522",
       }}
     >
-      <h1 style={{ color: "black",textDecoration: "none", }}>Welcome!</h1>
+      <h1 style={{ color: "black",textDecoration: "none" }}>Welcome!</h1>
       <input
         value={localRoom}
         onChange={handleRoomChange}
@@ -106,7 +106,7 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
       >
         Join
       </button>
-      <a href="#" onClick={fetchRoomID} style={{ color: "black",textDecoration: "none", }}>
+      <a href="#" onClick={fetchRoomID} style={{ color: "black",textDecoration: "none" }}>
         Generate Unique Room ID
       </a>
     </div>
