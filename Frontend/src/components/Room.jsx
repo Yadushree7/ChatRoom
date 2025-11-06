@@ -530,7 +530,7 @@ function Room({ username, room, socket }) {
           width: "90vw",
           height: "85vh",
           // backgroundImage: `url(${bgImage})`,
-          backgroundColor: "#181818",
+          backgroundColor: "#1A0000",
           borderRadius: "15px",
           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
           padding: "20px",
@@ -541,6 +541,7 @@ function Room({ username, room, socket }) {
           style={{
             flex: "1",
             // backgroundColor: "#2b2b2b",
+            border: "1px solid red",
             borderRadius: "10px",
             padding: "10px",
             display: "flex",
@@ -674,7 +675,8 @@ function Room({ username, room, socket }) {
             flex: "2.5",
             display: "flex",
             flexDirection: "column",
-            // backgroundColor: "#2b2b2b",
+            // backgroundColor: "black",
+            border: "1px solid red",
             borderRadius: "10px",
             padding: "10px",
           }}
@@ -683,8 +685,8 @@ function Room({ username, room, socket }) {
               style={{
               flex: 1,
               borderRadius: "10px",
-              // backgroundColor: "black",
-              background: "radial-gradient(circle, #FF0000, #990000, #660000, #330000, #000000)", 
+              backgroundColor: "black",
+              // background: "radial-gradient(circle, #FF0000, #990000, #660000, #330000, #000000)", 
               padding: "10px",
               overflowY: "auto",
             }} 
@@ -714,11 +716,11 @@ function Room({ username, room, socket }) {
                 <div
                   style={{
                     maxWidth: "70%",
-                    // backgroundColor:
-                    //   msg.username === username ? "#950F35" : "#B51240",
-                    background: msg.username === username
-                      ? "linear-gradient(to right, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)"
-                      : "linear-gradient(to left, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)",
+                    backgroundColor:
+                      msg.username === username ? "#000000" : " #FF0000",
+                    // background: msg.username === username
+                    //   ? "linear-gradient(to right, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)"
+                    //   : "linear-gradient(to left, #000000 0%, #1a0000 20%, #330000 40%, #660000 60%, #990000 80%, #FF0000 100%)",
                     color: "white",
                     borderRadius: "10px",
                     padding: "10px",
