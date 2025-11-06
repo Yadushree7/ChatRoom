@@ -418,7 +418,7 @@ import { IoMdSend } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled from "styled-components";
-import bgImage from "./assets/background.jpg";
+import bgImage from "../assets/background.jpg";
 
 const ScrollableDiv = styled.div`
   overflow-y: auto;
