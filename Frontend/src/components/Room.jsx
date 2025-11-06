@@ -418,7 +418,7 @@ import { IoMdSend } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled from "styled-components";
-import bgImage from "../assets/background2.jpg";
+import bgImage from "../assets/background3.jpg";
 
 const ScrollableDiv = styled.div`
   overflow-y: auto;
@@ -527,7 +527,7 @@ function Room({ username, room, socket }) {
           gap: "20px",
           width: "90vw",
           height: "85vh",
-          backgroundColor: "#0D0C0C",
+          backgroundImage: `url(${bgImage})`,
           borderRadius: "15px",
           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
           padding: "20px",
