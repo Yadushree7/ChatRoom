@@ -520,7 +520,7 @@ function Room({ username, room, socket }) {
         justifyContent: "center",
         alignItems: "center",
         // backgroundColor: "black",
-        backgroundColor: "#55554E",
+        backgroundColor: "#252522",
         
       }}
     >
