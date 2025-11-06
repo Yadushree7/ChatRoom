@@ -43,3 +43,7 @@ button:hover {
   background-color: #252522;
 }
 
+.text-black {
+  color: black !important;
+  text-decoration: none;
+}
