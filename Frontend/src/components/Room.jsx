@@ -412,391 +412,24 @@
 
 // export default Room;
 
-// import React, { useState, useRef, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { IoMdSend } from "react-icons/io";
-// import { IoIosLogOut } from "react-icons/io";
-// import { FaCopy } from "react-icons/fa";
-// import styled from "styled-components";
-
-// const ScrollableDiv = styled.div`
-//   overflow-y: auto;
-//   &::-webkit-scrollbar {
-//     width: 8px;
-//   }
-//   &::-webkit-scrollbar-thumb {
-//     background-color: rgba(0, 0, 0, 0.6);
-//     border-radius: 10px;
-//   }
-//   &::-webkit-scrollbar-track {
-//     background-color: rgba(255, 255, 255, 0.1);
-//   }
-// `;
-
-// function Room({ username, room, socket }) {
-//   const [message, setMessage] = useState("");
-//   const [messages, setMessages] = useState([]);
-//   const [users, setUsers] = useState([]);
-//   const navigate = useNavigate();
-//   const messagesEndRef = useRef(null);
-
-//   useEffect(() => {
-//     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-//   }, [messages]);
-
-//   const handleMessageChange = (e) => {
-//     setMessage(e.target.value);
-//   };
-
-//   const sendMessage = () => {
-//     if (message.trim() !== "") {
-//       socket.emit("message", { username, message, room, time: Date.now() });
-//       setMessage("");
-//     } else {
-//       alert("Please enter a message to send.");
-//     }
-//   };
-
-//   useEffect(() => {
-//     const handleJoin = (data) => {
-//       if (data.room === room) {
-//         setUsers(data.users);
-//         setMessages((prev) => [
-//           ...prev,
-//           { username: "Server❗", message: data.message, time: Date.now() },
-//         ]);
-//       }
-//     };
-
-//     const handleLeave = (data) => {
-//       if (data.room === room) {
-//         setUsers(data.users);
-//         setMessages((prev) => [
-//           ...prev,
-//           { username: "Server❗", message: data.message, time: Date.now() },
-//         ]);
-//       }
-//     };
-
-//     const handleMessage = (msg) => {
-//       if (msg.room === room) {
-//         setMessages((prevMessages) => [
-//           ...prevMessages,
-//           { ...msg, time: Date.now() },
-//         ]);
-//       }
-//     };
-
-//     const handleUnload = () => {
-//       socket.emit("leave", { username, room });
-//     };
-
-//     socket.on("joined", handleJoin);
-//     socket.on("left", handleLeave);
-//     socket.on("message", handleMessage);
-//     window.addEventListener("beforeunload", handleUnload);
-
-//     return () => {
-//       socket.off("joined", handleJoin);
-//       socket.off("left", handleLeave);
-//       socket.off("message", handleMessage);
-//       window.removeEventListener("beforeunload", handleUnload);
-//     };
-//   }, [room, socket, username]);
-
-//   return (
-//     <div
-//       style={{
-//         position: "fixed",
-//         top: 0,
-//         left: 0,
-//         height: "100vh",
-//         width: "100vw",
-//         display: "flex",
-//         justifyContent: "center",
-//         alignItems: "center",
-//         backgroundColor: "#2b2b2b",
-//       }}
-//     >
-//       <div
-//         style={{
-//           display: "flex",
-//           gap: "20px",
-//           width: "90vw",
-//           height: "85vh",
-//           backgroundColor: "#3b3b3b",
-//           borderRadius: "15px",
-//           boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
-//           padding: "20px",
-//         }}
-//       >
-//         {/* ===== Left: User List ===== */}
-//         <div
-//           style={{
-//             flex: "1",
-//             backgroundColor: "#2b2b2b",
-//             borderRadius: "10px",
-//             padding: "10px",
-//             display: "flex",
-//             flexDirection: "column",
-//             color: "white",
-//           }}
-//         >
-//           <div
-//             style={{
-//               backgroundColor: "black",
-//               color: "white",
-//               padding: "10px",
-//               borderRadius: "10px",
-//               marginBottom: "10px",
-//               textAlign: "center",
-//               fontWeight: "bold",
-//             }}
-//           >
-//             Room ID: {room}
-//           </div>
-
-//           <h4 style={{ textAlign: "center" }}>Online Members</h4>
-
-//           <ScrollableDiv
-//             style={{
-//               flex: 1,
-//               backgroundColor: "#3b3b3b",
-//               borderRadius: "10px",
-//               padding: "10px",
-//             }}
-//           >
-//             <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
-//               {users.map((user, index) => (
-//                 <li
-//                   key={index}
-//                   style={{
-//                     display: "flex",
-//                     alignItems: "center",
-//                     marginBottom: "8px",
-//                     backgroundColor: "#2b2b2b",
-//                     borderRadius: "8px",
-//                     padding: "8px",
-//                   }}
-//                 >
-//                   <img
-//                     src={`https://robohash.org/${user}?set=set4`}
-//                     alt="avatar"
-//                     style={{
-//                       width: "30px",
-//                       height: "30px",
-//                       borderRadius: "50%",
-//                       marginRight: "10px",
-//                     }}
-//                   />
-//                   {user}
-//                 </li>
-//               ))}
-//             </ul>
-//           </ScrollableDiv>
-
-//           <div
-//             style={{
-//               display: "flex",
-//               justifyContent: "space-between",
-//               marginTop: "10px",
-//             }}
-//           >
-//             <button
-//               style={{
-//                 flex: 1,
-//                 padding: "8px",
-//                 backgroundColor: "black",
-//                 color: "white",
-//                 borderRadius: "8px",
-//                 marginRight: "5px",
-//               }}
-//               onClick={() => {
-//                 socket.emit("leave", { username, room });
-//                 navigate("/");
-//               }}
-//             >
-//               <IoIosLogOut />
-//             </button>
-//             <button
-//               style={{
-//                 flex: 1,
-//                 padding: "8px",
-//                 backgroundColor: "black",
-//                 color: "white",
-//                 borderRadius: "8px",
-//                 marginRight: "5px",
-//               }}
-//               onClick={() => navigator.clipboard.writeText(room)}
-//             >
-//               <FaCopy />
-//             </button>
-//             <button
-//               style={{
-//                 flex: 1,
-//                 padding: "8px",
-//                 backgroundColor: "black",
-//                 color: "white",
-//                 borderRadius: "8px",
-//               }}
-//               onClick={() => setMessages([])}
-//             >
-//               Clear
-//             </button>
-//           </div>
-//         </div>
-
-//         {/* ===== Right: Chat Section ===== */}
-//         <div
-//           style={{
-//             flex: "2.5",
-//             display: "flex",
-//             flexDirection: "column",
-//             backgroundColor: "#2b2b2b",
-//             borderRadius: "10px",
-//             padding: "10px",
-//           }}
-//         >
-//           <ScrollableDiv
-//             style={{
-//               flex: 1,
-//               borderRadius: "10px",
-//               backgroundColor: "#3b3b3b",
-//               padding: "10px",
-//               overflowY: "auto",
-//             }}
-//           >
-//             {messages.map((msg, index) => (
-//               <div
-//                 key={index}
-//                 style={{
-//                   display: "flex",
-//                   flexDirection:
-//                     msg.username === username ? "row-reverse" : "row",
-//                   alignItems: "flex-start",
-//                   marginBottom: "10px",
-//                 }}
-//               >
-//                 <img
-//                   src={`https://robohash.org/${msg.username}?set=set4`}
-//                   alt="avatar"
-//                   style={{
-//                     width: "35px",
-//                     height: "35px",
-//                     borderRadius: "50%",
-//                     margin: "0 10px",
-//                   }}
-//                 />
-//                 <div
-//                   style={{
-//                     maxWidth: "70%",
-//                     backgroundColor:
-//                       msg.username === username ? "#000000" : "#444444",
-//                     color: "white",
-//                     borderRadius: "10px",
-//                     padding: "10px",
-//                     boxShadow: "2px 2px 5px rgba(0,0,0,0.5)",
-//                   }}
-//                 >
-//                   <p
-//                     style={{
-//                       fontSize: "12px",
-//                       fontWeight: "bold",
-//                       margin: 0,
-//                       color: "#ccc",
-//                     }}
-//                   >
-//                     {msg.username === username ? "You" : msg.username}
-//                   </p>
-//                   <p
-//                     style={{
-//                       marginTop: "5px",
-//                       whiteSpace: "pre-wrap",
-//                       wordWrap: "break-word",
-//                     }}
-//                   >
-//                     {msg.message}
-//                   </p>
-//                   <p
-//                     style={{
-//                       fontSize: "10px",
-//                       color: "#999",
-//                       textAlign: "right",
-//                       marginTop: "5px",
-//                     }}
-//                   >
-//                     {new Date(msg.time).toLocaleTimeString()}
-//                   </p>
-//                 </div>
-//               </div>
-//             ))}
-//             <div ref={messagesEndRef} />
-//           </ScrollableDiv>
-
-//           {/* Input Area */}
-//           <div style={{ display: "flex", marginTop: "10px" }}>
-//             <textarea
-//               style={{
-//                 flex: 1,
-//                 borderRadius: "10px",
-//                 border: "none",
-//                 padding: "10px",
-//                 outline: "none",
-//                 backgroundColor: "black",
-//                 color: "white",
-//                 resize: "none",
-//               }}
-//               placeholder="Enter message..."
-//               value={message}
-//               onChange={handleMessageChange}
-//             />
-//             <button
-//               style={{
-//                 width: "60px",
-//                 borderRadius: "10px",
-//                 marginLeft: "10px",
-//                 backgroundColor: "black",
-//                 color: "white",
-//               }}
-//               onClick={sendMessage}
-//             >
-//               <IoMdSend />
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Room;
-
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdSend } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { FaCopy } from "react-icons/fa";
 import styled from "styled-components";
-import "./Room.css"; // gradient background, still usable
 
 const ScrollableDiv = styled.div`
-  width: 300px;
-  height: 400px;
-  overflow-y: scroll;
-  border-radius: 10px;
-  padding: 10px;
-
+  overflow-y: auto;
   &::-webkit-scrollbar {
     width: 8px;
   }
-
   &::-webkit-scrollbar-thumb {
-    background: rgba(98, 40, 114, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
   }
-
   &::-webkit-scrollbar-track {
-    background: rgba(232, 221, 234, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 `;
 
@@ -811,12 +444,17 @@ function Room({ username, room, socket }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleMessageChange = (e) => setMessage(e.target.value);
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
 
   const sendMessage = () => {
-    if (message.trim() === "") return;
-    socket.emit("message", { username, message, room, time: Date.now() });
-    setMessage("");
+    if (message.trim() !== "") {
+      socket.emit("message", { username, message, room, time: Date.now() });
+      setMessage("");
+    } else {
+      alert("Please enter a message to send.");
+    }
   };
 
   useEffect(() => {
@@ -841,11 +479,17 @@ function Room({ username, room, socket }) {
     };
 
     const handleMessage = (msg) => {
-      if (msg.room === room)
-        setMessages((prev) => [...prev, { ...msg, time: Date.now() }]);
+      if (msg.room === room) {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { ...msg, time: Date.now() },
+        ]);
+      }
     };
 
-    const handleUnload = () => socket.emit("leave", { username, room });
+    const handleUnload = () => {
+      socket.emit("leave", { username, room });
+    };
 
     socket.on("joined", handleJoin);
     socket.on("left", handleLeave);
@@ -861,284 +505,265 @@ function Room({ username, room, socket }) {
   }, [room, socket, username]);
 
   return (
-    <div className="room-bg" style={{ fontFamily: "'Poppins', sans-serif" }}>
-      {/* Chat section */}
-      <ScrollableDiv
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "900px",
-          height: "540px",
-          position: "absolute",
-          bottom: "90px",
-          right: "20px",
-          borderRadius: "15px",
-          background: "rgba(250,234,246,0.15)",
-          backdropFilter: "blur(10px)",
-          boxShadow: "0 0 20px rgba(98,40,114,0.3)",
-          color: "#2b2b2b",
-        }}
-      >
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            style={{
-              alignSelf: msg.username === username ? "flex-end" : "flex-start",
-              backgroundColor:
-                msg.username === username ? "#e8ddea" : "rgba(98,40,114,0.3)",
-              color: msg.username === username ? "#622872" : "#faeaf6",
-              borderRadius: "12px",
-              wordWrap: "break-word",
-              whiteSpace: "pre-wrap",
-              margin: "8px",
-              padding: "10px 14px",
-              marginTop: "15px",
-              maxWidth: "70%",
-              boxShadow: "2px 2px 6px rgba(0,0,0,0.3)",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection:
-                  msg.username === username ? "row-reverse" : "row",
-                alignItems: "center",
-                gap: "8px",
-              }}
-            >
-              <img
-                src={`https://robohash.org/${msg.username}?set=set4`}
-                alt="avatar"
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  borderRadius: "50%",
-                }}
-              />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems:
-                    msg.username === username ? "flex-end" : "flex-start",
-                }}
-              >
-                <p
-                  style={{
-                    margin: 0,
-                    fontWeight: "bold",
-                    fontSize: "13px",
-                    color: "#622872",
-                  }}
-                >
-                  {msg.username === username ? "You" : msg.username}
-                </p>
-                <p
-                  style={{
-                    fontSize: "10px",
-                    color: "#caa5cb",
-                    margin: 0,
-                  }}
-                >
-                  {new Date(msg.time).toLocaleTimeString()}
-                </p>
-              </div>
-            </div>
-            <p
-              style={{
-                marginTop: "10px",
-                textAlign: msg.username === username ? "right" : "left",
-              }}
-            >
-              {msg.message}
-            </p>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </ScrollableDiv>
-
-      {/* Input */}
-      <textarea
-        style={{
-          width: "900px",
-          height: "15px",
-          borderRadius: "10px",
-          border: "none",
-          padding: "15px",
-          position: "absolute",
-          bottom: "30px",
-          right: "10px",
-          outline: "none",
-          backgroundColor: "rgba(250,234,246,0.6)",
-          color: "#622872",
-          boxShadow: "0 0 10px rgba(98,40,114,0.3)",
-        }}
-        placeholder="Enter Text Here..."
-        type="text"
-        value={message}
-        onChange={handleMessageChange}
-      ></textarea>
-
-      <button
-        style={{
-          width: "50px",
-          padding: "11px",
-          position: "absolute",
-          bottom: "30px",
-          right: "10px",
-          color: "#fff",
-          outline: "none",
-          border: "none",
-          backgroundColor: "#622872",
-          borderRadius: "10px",
-          cursor: "pointer",
-          transition: "0.3s",
-        }}
-        onClick={sendMessage}
-      >
-        <IoMdSend />
-      </button>
-
-      {/* Sidebar */}
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#2b2b2b",
+      }}
+    >
       <div
         style={{
-          width: "400px",
-          height: "620px",
-          position: "absolute",
-          bottom: "30px",
-          left: "10px",
+          display: "flex",
+          gap: "20px",
+          width: "90vw",
+          height: "85vh",
+          backgroundColor: "#3b3b3b",
           borderRadius: "15px",
-          background: "rgba(250,234,246,0.15)",
-          backdropFilter: "blur(10px)",
-          boxShadow: "0 0 20px rgba(98,40,114,0.3)",
-          color: "#622872",
+          boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
+          padding: "20px",
         }}
       >
+        {/* ===== Left: User List ===== */}
         <div
           style={{
-            width: "365px",
-            height: "30px",
-            position: "absolute",
-            top: "10px",
-            left: "10px",
+            flex: "1",
+            backgroundColor: "#2b2b2b",
             borderRadius: "10px",
-            textAlign: "left",
             padding: "10px",
-            backgroundColor: "#622872",
-            color: "#faeaf6",
-            fontWeight: "bold",
+            display: "flex",
+            flexDirection: "column",
+            color: "white",
           }}
         >
-          Room ID: {room}
+          <div
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              padding: "10px",
+              borderRadius: "10px",
+              marginBottom: "10px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            Room ID: {room}
+          </div>
+
+          <h4 style={{ textAlign: "center" }}>Online Members</h4>
+
+          <ScrollableDiv
+            style={{
+              flex: 1,
+              backgroundColor: "#3b3b3b",
+              borderRadius: "10px",
+              padding: "10px",
+            }}
+          >
+            <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
+              {users.map((user, index) => (
+                <li
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "8px",
+                    backgroundColor: "#2b2b2b",
+                    borderRadius: "8px",
+                    padding: "8px",
+                  }}
+                >
+                  <img
+                    src={`https://robohash.org/${user}?set=set4`}
+                    alt="avatar"
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      borderRadius: "50%",
+                      marginRight: "10px",
+                    }}
+                  />
+                  {user}
+                </li>
+              ))}
+            </ul>
+          </ScrollableDiv>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "10px",
+            }}
+          >
+            <button
+              style={{
+                flex: 1,
+                padding: "8px",
+                backgroundColor: "black",
+                color: "white",
+                borderRadius: "8px",
+                marginRight: "5px",
+              }}
+              onClick={() => {
+                socket.emit("leave", { username, room });
+                navigate("/");
+              }}
+            >
+              <IoIosLogOut />
+            </button>
+            <button
+              style={{
+                flex: 1,
+                padding: "8px",
+                backgroundColor: "black",
+                color: "white",
+                borderRadius: "8px",
+                marginRight: "5px",
+              }}
+              onClick={() => navigator.clipboard.writeText(room)}
+            >
+              <FaCopy />
+            </button>
+            <button
+              style={{
+                flex: 1,
+                padding: "8px",
+                backgroundColor: "black",
+                color: "white",
+                borderRadius: "8px",
+              }}
+              onClick={() => setMessages([])}
+            >
+              Clear
+            </button>
+          </div>
         </div>
 
-        <ScrollableDiv
+        {/* ===== Right: Chat Section ===== */}
+        <div
           style={{
-            position: "absolute",
-            left: "40px",
-            top: "90px",
-            height: "420px",
+            flex: "2.5",
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "#2b2b2b",
             borderRadius: "10px",
-            overflowY: "scroll",
-            backgroundColor: "rgba(232,221,234,0.15)",
-            boxShadow: "0 0 10px rgba(98,40,114,0.3)",
             padding: "10px",
-            color: "#622872",
           }}
         >
-          <h4 style={{ textAlign: "center", color: "#622872" }}>
-            Online Members
-          </h4>
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            {users.map((user, i) => (
-              <li
-                key={i}
+          <ScrollableDiv
+            style={{
+              flex: 1,
+              borderRadius: "10px",
+              backgroundColor: "#3b3b3b",
+              padding: "10px",
+              overflowY: "auto",
+            }}
+          >
+            {messages.map((msg, index) => (
+              <div
+                key={index}
                 style={{
-                  padding: "8px",
-                  backgroundColor: "rgba(250,234,246,0.5)",
-                  margin: "5px 0",
-                  borderRadius: "8px",
                   display: "flex",
-                  alignItems: "center",
-                  color: "#622872",
+                  flexDirection:
+                    msg.username === username ? "row-reverse" : "row",
+                  alignItems: "flex-start",
+                  marginBottom: "10px",
                 }}
               >
                 <img
-                  src={`https://robohash.org/${user}?set=set4`}
+                  src={`https://robohash.org/${msg.username}?set=set4`}
                   alt="avatar"
                   style={{
-                    width: "30px",
-                    height: "30px",
+                    width: "35px",
+                    height: "35px",
                     borderRadius: "50%",
-                    marginRight: "10px",
+                    margin: "0 10px",
                   }}
                 />
-                {user}
-              </li>
+                <div
+                  style={{
+                    maxWidth: "70%",
+                    backgroundColor:
+                      msg.username === username ? "#000000" : "#444444",
+                    color: "white",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    boxShadow: "2px 2px 5px rgba(0,0,0,0.5)",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      margin: 0,
+                      color: "#ccc",
+                    }}
+                  >
+                    {msg.username === username ? "You" : msg.username}
+                  </p>
+                  <p
+                    style={{
+                      marginTop: "5px",
+                      whiteSpace: "pre-wrap",
+                      wordWrap: "break-word",
+                    }}
+                  >
+                    {msg.message}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      color: "#999",
+                      textAlign: "right",
+                      marginTop: "5px",
+                    }}
+                  >
+                    {new Date(msg.time).toLocaleTimeString()}
+                  </p>
+                </div>
+              </div>
             ))}
-          </ul>
-        </ScrollableDiv>
+            <div ref={messagesEndRef} />
+          </ScrollableDiv>
 
-        <button
-          style={{
-            width: "125px",
-            padding: "11px",
-            position: "absolute",
-            bottom: "0",
-            right: "0",
-            margin: "5px",
-            color: "#faeaf6",
-            outline: "none",
-            border: "none",
-            backgroundColor: "#622872",
-            borderRadius: "8px",
-          }}
-          onClick={() => setMessages([])}
-        >
-          x
-        </button>
-
-        <button
-          style={{
-            width: "125px",
-            padding: "11px",
-            position: "absolute",
-            bottom: "0",
-            left: "132px",
-            margin: "5px",
-            color: "#faeaf6",
-            outline: "none",
-            border: "none",
-            backgroundColor: "#622872",
-            borderRadius: "8px",
-          }}
-          onClick={() => navigator.clipboard.writeText(room)}
-        >
-          <FaCopy />
-        </button>
-
-        <button
-          style={{
-            width: "125px",
-            padding: "11px",
-            position: "absolute",
-            bottom: "0",
-            left: "0",
-            margin: "5px",
-            color: "#faeaf6",
-            outline: "none",
-            border: "none",
-            backgroundColor: "#622872",
-            borderRadius: "8px",
-          }}
-          onClick={() => {
-            socket.emit("leave", { username, room });
-            navigate("/");
-          }}
-        >
-          <IoIosLogOut />
-        </button>
+          {/* Input Area */}
+          <div style={{ display: "flex", marginTop: "10px" }}>
+            <textarea
+              style={{
+                flex: 1,
+                borderRadius: "10px",
+                border: "none",
+                padding: "10px",
+                outline: "none",
+                backgroundColor: "black",
+                color: "white",
+                resize: "none",
+              }}
+              placeholder="Enter message..."
+              value={message}
+              onChange={handleMessageChange}
+            />
+            <button
+              style={{
+                width: "60px",
+                borderRadius: "10px",
+                marginLeft: "10px",
+                backgroundColor: "black",
+                color: "white",
+              }}
+              onClick={sendMessage}
+            >
+              <IoMdSend />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
