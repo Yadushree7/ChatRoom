@@ -685,7 +685,7 @@ function Room({ username, room, socket }) {
               style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "black",
+              backgroundColor: "#FFB8B8",
               // background: "radial-gradient(circle, #FF0000, #990000, #660000, #330000, #000000)", 
               padding: "10px",
               overflowY: "auto",
@@ -716,6 +716,7 @@ function Room({ username, room, socket }) {
                 <div
                   style={{
                     maxWidth: "70%",
+                    border: "1px solid red",
                     backgroundColor:
                       msg.username === username ? "#000000" : " #FF0000",
                     // background: msg.username === username
@@ -768,12 +769,12 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 borderRadius: "10px",
-                border: "none",
+                border: "1px solid red",
                 padding: "10px",
                 outline: "none",
                 backgroundColor: "black",
                 color: "white",
-                boxShadow: "0 0 5px 1px red",
+                // boxShadow: "0 0 5px 1px red",
                 resize: "none",
               }}
               placeholder="Enter message..."
@@ -785,6 +786,7 @@ function Room({ username, room, socket }) {
                 width: "60px",
                 borderRadius: "10px",
                 marginLeft: "10px",
+                border: "1px solid red",
                 backgroundColor: "black",
                 boxShadow: "0 0 5px 1px red",
                 color: "red",
