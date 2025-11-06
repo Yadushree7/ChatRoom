@@ -771,33 +771,12 @@
 
 // export default Room;
 
-import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { IoMdSend } from "react-icons/io";
-import { IoIosLogOut } from "react-icons/io";
-import { FaCopy } from "react-icons/fa";
-import styled, { keyframes } from "styled-components";
-
-// === Gradient Animation ===
-const gradientShift = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-const Background = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #022622, #275d46, #569578, #101c13);
-  background-size: 400% 400%;
-  animation: ${gradientShift} 15s ease infinite;
-`;
+// import React, { useState, useRef, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { IoMdSend } from "react-icons/io";
+// import { IoIosLogOut } from "react-icons/io";
+// import { FaCopy } from "react-icons/fa";
+// import styled from "styled-components";
 
 const ScrollableDiv = styled.div`
   overflow-y: auto;
@@ -805,11 +784,11 @@ const ScrollableDiv = styled.div`
     width: 8px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(13, 20, 51, 0.8);
     border-radius: 10px;
   }
   &::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(108, 144, 195, 0.2);
   }
 `;
 
@@ -865,9 +844,7 @@ function Room({ username, room, socket }) {
       }
     };
 
-    const handleUnload = () => {
-      socket.emit("leave", { username, room });
-    };
+    const handleUnload = () => socket.emit("leave", { username, room });
 
     socket.on("joined", handleJoin);
     socket.on("left", handleLeave);
@@ -883,36 +860,49 @@ function Room({ username, room, socket }) {
   }, [room, socket, username]);
 
   return (
-    <Background>
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(135deg, #0D1433, #171F55, #274272, #6C90C3)",
+        backgroundSize: "400% 400%",
+        animation: "gradientShift 15s ease infinite",
+      }}
+    >
       <div
         style={{
           display: "flex",
           gap: "20px",
           width: "90vw",
           height: "85vh",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundColor: "rgba(13, 20, 51, 0.85)",
           borderRadius: "15px",
-          boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
+          boxShadow: "4px 4px 15px rgba(0,0,0,0.5)",
           padding: "20px",
-          backdropFilter: "blur(6px)",
+          color: "#E8E8E8",
         }}
       >
         {/* ===== Left: User List ===== */}
         <div
           style={{
             flex: "1",
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            backgroundColor: "rgba(23, 31, 85, 0.8)",
             borderRadius: "10px",
             padding: "10px",
             display: "flex",
             flexDirection: "column",
-            color: "white",
           }}
         >
           <div
             style={{
-              backgroundColor: "black",
-              color: "white",
+              backgroundColor: "#274272",
+              color: "#FFFFFF",
               padding: "10px",
               borderRadius: "10px",
               marginBottom: "10px",
@@ -923,12 +913,14 @@ function Room({ username, room, socket }) {
             Room ID: {room}
           </div>
 
-          <h4 style={{ textAlign: "center" }}>Online Members</h4>
+          <h4 style={{ textAlign: "center", color: "#AFCBFF" }}>
+            Online Members
+          </h4>
 
           <ScrollableDiv
             style={{
               flex: 1,
-              backgroundColor: "rgba(40, 40, 40, 0.6)",
+              backgroundColor: "rgba(39, 66, 114, 0.6)",
               borderRadius: "10px",
               padding: "10px",
             }}
@@ -941,7 +933,7 @@ function Room({ username, room, socket }) {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: "8px",
-                    backgroundColor: "rgba(0,0,0,0.5)",
+                    backgroundColor: "rgba(13, 20, 51, 0.7)",
                     borderRadius: "8px",
                     padding: "8px",
                   }}
@@ -973,8 +965,8 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "#101c13",
-                color: "white",
+                backgroundColor: "#171F55",
+                color: "#FFFFFF",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
@@ -989,8 +981,8 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "#101c13",
-                color: "white",
+                backgroundColor: "#171F55",
+                color: "#FFFFFF",
                 borderRadius: "8px",
                 marginRight: "5px",
               }}
@@ -1002,8 +994,8 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 padding: "8px",
-                backgroundColor: "#101c13",
-                color: "white",
+                backgroundColor: "#171F55",
+                color: "#FFFFFF",
                 borderRadius: "8px",
               }}
               onClick={() => setMessages([])}
@@ -1019,7 +1011,7 @@ function Room({ username, room, socket }) {
             flex: "2.5",
             display: "flex",
             flexDirection: "column",
-            backgroundColor: "rgba(0,0,0,0.6)",
+            backgroundColor: "rgba(23, 31, 85, 0.8)",
             borderRadius: "10px",
             padding: "10px",
           }}
@@ -1028,9 +1020,8 @@ function Room({ username, room, socket }) {
             style={{
               flex: 1,
               borderRadius: "10px",
-              backgroundColor: "rgba(40, 40, 40, 0.6)",
+              backgroundColor: "rgba(39, 66, 114, 0.7)",
               padding: "10px",
-              overflowY: "auto",
             }}
           >
             {messages.map((msg, index) => (
@@ -1058,7 +1049,7 @@ function Room({ username, room, socket }) {
                   style={{
                     maxWidth: "70%",
                     backgroundColor:
-                      msg.username === username ? "#022622" : "#275d46",
+                      msg.username === username ? "#0F0F0F" : "#274272",
                     color: "white",
                     borderRadius: "10px",
                     padding: "10px",
@@ -1070,7 +1061,7 @@ function Room({ username, room, socket }) {
                       fontSize: "12px",
                       fontWeight: "bold",
                       margin: 0,
-                      color: "#ccc",
+                      color: "#AFCBFF",
                     }}
                   >
                     {msg.username === username ? "You" : msg.username}
@@ -1087,7 +1078,7 @@ function Room({ username, room, socket }) {
                   <p
                     style={{
                       fontSize: "10px",
-                      color: "#aaa",
+                      color: "#AFCBFF",
                       textAlign: "right",
                       marginTop: "5px",
                     }}
@@ -1106,10 +1097,10 @@ function Room({ username, room, socket }) {
               style={{
                 flex: 1,
                 borderRadius: "10px",
-                border: "none",
+                border: "1px solid #6C90C3",
                 padding: "10px",
                 outline: "none",
-                backgroundColor: "#101c13",
+                backgroundColor: "#0F0F0F",
                 color: "white",
                 resize: "none",
               }}
@@ -1122,8 +1113,8 @@ function Room({ username, room, socket }) {
                 width: "60px",
                 borderRadius: "10px",
                 marginLeft: "10px",
-                backgroundColor: "#022622",
-                color: "white",
+                backgroundColor: "#274272",
+                color: "#FFFFFF",
               }}
               onClick={sendMessage}
             >
@@ -1132,9 +1123,8 @@ function Room({ username, room, socket }) {
           </div>
         </div>
       </div>
-    </Background>
+    </div>
   );
 }
 
 export default Room;
-
