@@ -723,7 +723,7 @@ function Room({ username, room, socket }) {
                     maxWidth: "70%",
                     // backgroundColor:
                     //   msg.username === username ? "#950F35" : "#B51240",
-                    background: msg.username === username  ? "linear-gradient(to bottom, #000000 0%, #950F35 30%, #B51240 70%, #000000 100%)
+                    background: msg.username === username  ? "linear-gradient(to bottom, #000000 0%, #950F35 30%, #B51240 70%, #000000 100%),
                     color: "white",
                     borderRadius: "10px",
                     padding: "10px",
