@@ -547,7 +547,7 @@ function Room({ username, room, socket }) {
         >
           <div
             style={{
-              backgroundColor: "red",
+              // backgroundColor: "red",
               backgroundColor: "black",
               border: "1px solid #FF0000",
               color: "#FF0000",
