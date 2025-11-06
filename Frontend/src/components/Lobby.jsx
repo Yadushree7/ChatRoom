@@ -96,8 +96,8 @@ function Lobby({ setUsername, setRoom, setJoined, socket }) {
           borderRadius: "5px",
           border: "none",
           // backgroundColor: "#000000",
-          backgroundColor: ishovered === "leave" ? "black" : "red",
-          color: ishovered === "leave" ? "red" : "black",
+          backgroundColor: ishovered  ? "black" : "red",
+          color: ishovered ? "red" : "black",
           outline: "none",
         }}
         onMouseEnter={() => setishovered(true)}
